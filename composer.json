@@ -1,0 +1,27 @@
+{
+    "name": "allexlima/punch-clock",
+    "description": "...",
+    "homepage": "https://github.com/allexlima/punch-clock",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Allex Lima",
+            "email": "allexlima@unn.edu.br",
+            "homepage": "https://allexlima.com",
+            "role": "Maintainer"
+        },
+        {
+            "name": "Paulo I. Moraes",
+            "email": "pauloigormoraes@gmail.com",
+            "homepage": "https://paulomoraes.me",
+            "role": "Maintainer"
+        }
+    ],
+    "require" : {
+	"ext-mysql": "*",
+	"ext-gettext": "*"
+    },
+    "require-dev": {
+        "heroku/heroku-buildpack-php": "*"
+    }
+}
