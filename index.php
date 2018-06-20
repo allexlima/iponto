@@ -14,7 +14,7 @@
 
   foreach ($pdo->query($sql) as $row) {
       print $row['colab_id'] . "\t";
-      print $row['colab_name'] . "\t";
+      print $row['colab_nome'] . "\t";
       print $row['colab_email'] . "\t";
       print $row['colab_supervisor'] . "\t";
   }
