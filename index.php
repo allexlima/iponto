@@ -6,10 +6,22 @@
   require_once 'src/model/connect.php';
   require_once 'src/model/i_colab.php';
 
-  if(@$_GET['email'] && @$_GET['password']){
-    $a = new Model_icolab($pdo);
-    echo $a->login($_GET['email'], $_GET['password']);
-  }else
-    echo "Aguardando 'email' e 'password' via GET";
+  $a = new Model_icolab($pdo);
+
+  switch(@$_GET['pg']){
+    case "login":
+      echo $a->login($_POST['email'], $_POST['password']);
+      break;
+    case "cadastro":
+      echo $a->create($_POST['nome'], $_POST['email'], $_POST['password']);
+      break;
+    case "is_admin":
+      echo $a->is_admin($_POST['email']);
+      break;
+    default:
+      echo "Escolha um recurso!";
+      break;
+  }
+
 
 ?>
