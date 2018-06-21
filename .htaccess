@@ -6,5 +6,4 @@ RewriteEngine On
 RewriteCond %{SCRIPT_FILENAME} !-f
 RewriteCond %{SCRIPT_FILENAME} !-d
 
-RewriteRule /favicon.ico /src/view/img/icon.png
 RewriteRule ^(.*)$ /index.php?pg=$1
