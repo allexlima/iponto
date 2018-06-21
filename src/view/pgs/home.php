@@ -34,14 +34,17 @@
                   <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" id="pills-new-user-tab" data-toggle="pill" href="#new-user" role="tab" aria-controls="new-user" aria-selected="false">New user</a>
-                </li>
-                <li class="nav-item">
                   <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
                 </li>
+                <?php if($i_colab->is_admin($_SESSION['user_id']) ){ ?>
+                <li class="nav-item">
+                  <a class="nav-link" id="pills-new-user-tab" data-toggle="pill" href="#new-user" role="tab" aria-controls="new-user" aria-selected="false">New user</a>
+                </li>
+                <?php } ?>
                 <li class="nav-item">
                   <a class="nav-link" href="?pg=signout" role="tab" aria-selected="false">Sing out</a>
                 </li>
+
             </ul>
         </div>
 	</nav>
@@ -49,14 +52,14 @@
 	<main class="container animated fadeInUp">
         <div class="tab-content" id="pills-tabContent">
           <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="pills-home-tab">
-              Home
+              <?php require_once 'src/view/pgs/support/punch_clock.php'; ?>
           </div>
-          <div class="tab-pane fade" id="new-user" role="tabpanel" aria-labelledby="pills-new-user-tab">
-              Novo perfil
-          </div>
+
           <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-              Editar meu perfil
+             <?php require_once 'src/view/pgs/support/update_profile.php'; ?>
           </div>
+
+          <?php if($i_colab->is_admin($_SESSION['user_id'])) {require_once 'src/view/pgs/support/new_user.php';} ?>
         </div>
 	</main>
 

@@ -24,10 +24,18 @@ class ModelColaboradores{
         return (!$result) ? -1 : $result[0];
     }
 
-    public function is_admin($email){
-        $sql = "SELECT colab_id FROM i_colab WHERE colab_email = (?) AND colab_supervisor = (true)";
+    public function get_user($id){
+        $sql = "SELECT colab_nome, colab_email, colab_funcao FROM i_colab WHERE colab_id = (?);";
         $query = $this->conn->prepare($sql);
-        $query->execute(array($email));
+        $query->execute(array($id));
+        $result = $query->fetch();
+        return (!$result) ? -1 : $result;
+    }
+
+    public function is_admin($id){
+        $sql = "SELECT colab_id FROM i_colab WHERE colab_id = (?) AND colab_supervisor = (true)";
+        $query = $this->conn->prepare($sql);
+        $query->execute(array($id));
         $result = $query->fetch();
         return (!$result) ? 0 : 1;
     }

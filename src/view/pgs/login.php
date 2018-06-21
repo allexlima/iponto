@@ -22,19 +22,19 @@
         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 
         <?php if(isset($alert_msg)){ ?>
-
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-          <strong>Ops!</strong> <?php echo $alert_msg; ?>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        </div>
-
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <strong>Ops!</strong> <?php echo $alert_msg; ?>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
         <?php } ?>
 
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        
         <br>
+
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         <p class="mt-5 mb-3 text-muted">&copy; 2018 <a href="http://allexlima.com">Allex Lima</a> & <a href="http://paulomoraes.me">Paulo Moraes</a> &middot; All rights reserved under <a href="LICENSE">MIT license</a>.</p>
     </form>
