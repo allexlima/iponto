@@ -36,6 +36,9 @@
                 </li>
                 <?php if($i_colab->is_admin($_SESSION['user_id'])){ ?>
                 <li class="nav-item">
+                  <a class="nav-link" id="pills-new-hours-tab" data-toggle="pill" href="#user-hours" role="tab" aria-controls="user-hours" aria-selected="false">Users hours</a>
+                </li>
+                <li class="nav-item">
                   <a class="nav-link" id="pills-new-user-tab" data-toggle="pill" href="#new-user" role="tab" aria-controls="new-user" aria-selected="false">New user</a>
                 </li>
                 <?php } ?>
@@ -77,6 +80,7 @@
           <?php
             if($i_colab->is_admin($_SESSION['user_id'])) {
               require_once 'src/view/pgs/support/new_user.php';
+              require_once 'src/view/pgs/support/user_hours.php';
             }
           ?>
         </div>
