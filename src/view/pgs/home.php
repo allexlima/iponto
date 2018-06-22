@@ -11,6 +11,7 @@
 	<link type="text/css" rel="stylesheet" href="src/view/css/bootstrap.min.css">
 	<link type="text/css" rel="stylesheet" href="src/view/css/littlethings.css">
 	<link type="text/css" rel="stylesheet" href="src/view/css/animate.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 	<script src="src/view/js/jquery.min.js"></script>
 	<script src="src/view/js/popper.min.js"></script>
 	<script src="src/view/js/bootstrap.min.js"></script>
@@ -29,28 +30,40 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <br>
-            <ul class="nav nav-pills nav-fill">
+            <ul class="nav nav-pills nav-fill mr-auto" role="tablist">
                 <li class="nav-item">
                   <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
                 </li>
-                <?php if($i_colab->is_admin($_SESSION['user_id']) ){ ?>
+                <?php if($i_colab->is_admin($_SESSION['user_id'])){ ?>
                 <li class="nav-item">
                   <a class="nav-link" id="pills-new-user-tab" data-toggle="pill" href="#new-user" role="tab" aria-controls="new-user" aria-selected="false">New user</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="pills-new-user-tab" data-toggle="pill" href="#list-users" role="tab" aria-controls="list-users" aria-selected="false">List users</a>
                 </li>
                 <?php } ?>
                 <li class="nav-item">
                   <a class="nav-link" href="?pg=signout" role="tab" aria-selected="false">Sing out</a>
                 </li>
-
             </ul>
         </div>
+
+        <span class="font-weight-light">Welcome, <?php echo $user_details['colab_nome']; ?></span>!
 	</nav>
 
-	<main class="container animated fadeInUp">
-        <div class="tab-content" id="pills-tabContent">
+
+	<main class="container">
+        <?php if(isset($_SESSION['msg'])){ ?>
+            <div class="alert alert-info alert-dismissible animated fadeInDown" role="alert">
+              <?php echo $_SESSION['msg']; ?>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+        <?php } ?>
+
+        <div class="tab-content animated fadeInUp" id="pills-tabContent">
           <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="pills-home-tab">
               <?php require_once 'src/view/pgs/support/punch_clock.php'; ?>
           </div>
@@ -59,7 +72,12 @@
              <?php require_once 'src/view/pgs/support/update_profile.php'; ?>
           </div>
 
-          <?php if($i_colab->is_admin($_SESSION['user_id'])) {require_once 'src/view/pgs/support/new_user.php';} ?>
+          <?php
+            if($i_colab->is_admin($_SESSION['user_id'])) {
+              require_once 'src/view/pgs/support/new_user.php';
+              require_once 'src/view/pgs/support/list_users.php';
+            }
+          ?>
         </div>
 	</main>
 

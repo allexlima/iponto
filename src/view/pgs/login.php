@@ -13,6 +13,13 @@
 	<script src="src/view/js/jquery.min.js"></script>
 	<script src="src/view/js/popper.min.js"></script>
 	<script src="src/view/js/bootstrap.min.js"></script>
+    <style> code{color: #39a9c1; cursor: copy;} </style>
+    <script>
+        $(document).ready(function(){
+            $(".user").click(function(){$("#inputEmail").val("admin@123.com");});
+            $(".pass").click(function(){$("#inputPassword").val("admin@123");});
+        });
+    </script>
 </head>
 
 <body class="text-center">
@@ -21,18 +28,25 @@
         <img class="mb-4" src="src/view/img/icon.png" alt="" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 
-        <?php if(isset($alert_msg)){ ?>
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-              <strong>Ops!</strong> <?php echo $alert_msg; ?>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-        <?php } ?>
+
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+          Use the demo account <code class="user">admin@123.com</code> and <code class="pass">admin@123</code> to sign in.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+
 
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        
+
+        <?php if(isset($_SESSION['msg'])){ ?>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <strong>Ops!</strong> <?php echo $_SESSION['msg'] ?>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+        <?php } ?>
+
         <br>
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
