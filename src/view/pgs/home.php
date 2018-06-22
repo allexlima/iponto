@@ -34,24 +34,21 @@
                 <li class="nav-item">
                   <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
-                </li>
                 <?php if($i_colab->is_admin($_SESSION['user_id'])){ ?>
                 <li class="nav-item">
                   <a class="nav-link" id="pills-new-user-tab" data-toggle="pill" href="#new-user" role="tab" aria-controls="new-user" aria-selected="false">New user</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="pills-new-user-tab" data-toggle="pill" href="#list-users" role="tab" aria-controls="list-users" aria-selected="false">List users</a>
-                </li>
                 <?php } ?>
+                <li class="nav-item">
+                  <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#profile" role="tab" aria-controls="profile" aria-selected="false">My profile</a>
+                </li>
                 <li class="nav-item">
                   <a class="nav-link" href="?pg=signout" role="tab" aria-selected="false">Sing out</a>
                 </li>
             </ul>
         </div>
 
-        <span class="font-weight-light">Welcome, <?php echo $user_details['colab_nome']; ?></span>!
+        <span class="font-weight-light">Hi <?php echo $user_details['colab_nome']; ?></span>!
 	</nav>
 
 
@@ -65,7 +62,12 @@
 
         <div class="tab-content animated fadeInUp" id="pills-tabContent">
           <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="pills-home-tab">
-              <?php require_once 'src/view/pgs/support/punch_clock.php'; ?>
+              <?php
+                if($i_colab->is_admin($_SESSION['user_id']))
+                    require_once 'src/view/pgs/support/list_users.php';
+                else
+                    require_once 'src/view/pgs/support/punch_clock.php';
+              ?>
           </div>
 
           <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="pills-profile-tab">
@@ -75,7 +77,6 @@
           <?php
             if($i_colab->is_admin($_SESSION['user_id'])) {
               require_once 'src/view/pgs/support/new_user.php';
-              require_once 'src/view/pgs/support/list_users.php';
             }
           ?>
         </div>
