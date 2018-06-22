@@ -36,6 +36,20 @@
                 }
                 break;
 
+            case 'checkin':
+                if($i_ponto->pclock_open($_SESSION['user_id']))
+                    $_SESSION['msg'] = "You <b>checked in</b> successfully <b>at ".date("F j, Y, g:i:s a")."</b>";
+                else
+                    $_SESSION['msg'] = "<b>Something went wrong!</b> You can't re-check in before your check out.";
+                break;
+
+            case 'checkout':
+                if($i_ponto->pclock_close($_SESSION['user_id']))
+                    $_SESSION['msg'] = "You <b>checked out</b> successfully <b>at ".date("F j, Y, g:i:s a")."</b>";
+                else
+                    $_SESSION['msg'] = "<b>Something went wrong!</b> You can't re-check out before your check in.";
+                break;
+
             default:
                 break;
         }
